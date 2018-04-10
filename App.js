@@ -4,7 +4,6 @@
  * @flow
  */
 /*
-
 import React, { Component } from 'react';
 import {
   Platform,
@@ -26,10 +25,10 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to React Native! Ual "
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit App.js
+          To get started, edit App.js Heheh
         </Text>
         <Text style={styles.instructions}>
           {instructions}
@@ -59,316 +58,68 @@ const styles = StyleSheet.create({
 });
 */
 
-/*import React, { Component } from 'react';
-import {
-    StyleSheet,
-    AppRegistry,
-    TextInput,
-    Button,
-    Text,
-    View
-} from 'react-native';
+import React from 'react';
+import {Text, View} from 'react-native';
 
-export default class UselessTextInput extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { text: 'Useless Placeholder' };
+import { TabNavigator } from "react-navigation";
+
+import LoginScreen from './tabs/LoginScreen';
+import EmpresasScreen from './tabs/EmpresasScreen';
+import TelaEmpresasScreen from './tabs/TelaEmpresasScreen';
+import ListViewScreen from './tabs/ListView';
+import QRCodeScreen from '.tabs/QRCode';
+import org.reactnative.camera.RNCameraPackage;
+
+
+var MainScreenNavigator = TabNavigator({
+    Tab1: {screen: LoginScreen},
+    Tab2: {screen: EmpresasScreen},
+    Tab3: {screen: TelaEmpresasScreen},
+    Tab4: {screen: ListViewScreen},
+    Tab5: {screen: QRCodeScreen},
+},{
+    tabBarPosition: 'bottom',
+    swipeEnabled: true,
+    //animationEnabled: true,
+    //backBehavior: 'initialRoute',
+    tabBarHidden: true, // make the tab bar hidden
+    //tabBarButtonColor: '#ffff00', // change the color of the tab icons and text (also unselected)
+    //tabBarSelectedButtonColor: '#ff9900', // change the color of the selected tab icon and text (only selected)
+    //tabBarBackgroundColor: '#551A8B', // change the background color of the tab bar
+    //tabBarTranslucent: true, // change the translucent of the tab bar to false
+    //tabBarTextFontFamily: 'Avenir-Medium', //change the tab font family
+    //tabBarLabelColor: '#ffb700', // iOS only. change the color of tab text
+    //tabBarSelectedLabelColor: 'red', // iOS only. change the color of the selected tab text
+    //forceTitlesDisplay: true, // Android only. If true - Show all bottom tab labels. If false - only the selected tab's label is visible.
+    //tabBarHideShadow: true, // iOS only. Remove default tab bar top shadow (hairline)
+    tabBarOptions: {
+        activeTintColor: 'white',
+        activeBackgroundColor: 'darkgreen',
+        inactiveTintColor: 'black',
+        inactiveBackgroundColor: 'green',
+        showIcon: true,
+        labelStyle: {
+            fontSize: 12,
+            padding: 0,
+            height: 13,
+            position: 'absolute'
+        },
+        style: {
+            backgroundColor: 'rgba(121, 85, 72, 0.1)',
+            shadowColor: 'black',
+            opacity: 0.5,
+            shadowOpacity: 0.1,
+            shadowRadius: 0.5,
+            shadowOffset:{
+                height: 0.5,
+            },
+            //display: 'none',
+        },
     }
-
-    render() {
-        return (
-
-            <View style={
-                {
-                    justifyContent: 'center'
-                }
-            }>
-
-                <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1, alignItems: 'center',}}
-                    onChangeText={(text) => this.setState({text})}
-                    value={this.state.text}
-                />
-            </View>
-
-        );
-    }
-}
-
-/*
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });
-*/
-//AppRegistry.registerComponent('AwesomeProject', () => UselessTextInput);
 
+MainScreenNavigator.navigationOptions = {
+    title: "Tab Example"
+};
 
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-/*import React, { Component } from 'react';
-import { Alert, AppRegistry, Button, StyleSheet, View } from 'react-native';
-
-export default class ButtonBasics extends Component {
-    _onPressButton() {
-        Alert.alert('You tapped the button!')
-    }
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <View style={styles.buttonContainer}>
-                    <Button
-                        onPress={this._onPressButton}
-                        title="Press Me"
-                    />
-                </View>
-                <View style={styles.buttonContainer}>
-                    <Button
-                        onPress={this._onPressButton}
-                        title="Press Me"
-                        color="#841584"
-                    />
-                </View>
-                <View style={styles.alternativeLayoutButtonContainer}>
-                    <Button
-                        onPress={this._onPressButton}
-                        title="This looks great!"
-                    />
-                    <Button
-                        onPress={this._onPressButton}
-                        title="OK!"
-                        color="#841584"
-                    />
-                </View>
-            </View>
-        );
-    }
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    buttonContainer: {
-        margin: 20
-    },
-    alternativeLayoutButtonContainer: {
-        margin: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    }
-})
-
-// skip this line if using Create React Native App
-AppRegistry.registerComponent('AwesomeProject', () => ButtonBasics);*/
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-import React, { Component } from 'react';
-import {
-        Alert,
-        AppRegistry,
-        Image,
-        Platform,
-        ScrollView,
-        StyleSheet,
-        Text,
-        TextInput,
-        TouchableHighlight,
-        TouchableOpacity,
-        TouchableNativeFeedback,
-        TouchableWithoutFeedback,
-        View
-    } from 'react-native';
-
-import { Card, ListItem, Button } from 'react-native-elements';
-
-export default class Touchables extends Component {
-    _onPressButton() {
-        Alert.alert('You tapped the button!')
-    }
-
-    _onLongPressButton() {
-        Alert.alert('You long-pressed the button!')
-    }
-
-
-    render() {
-        return (
-            <ScrollView>
-                <View style={styles.container}>
-
-                    <Card title="Empresas" >
-                        {
-                            users.map((u, i) => {
-                                return (
-                                    <View key={i} style={styles.user}>
-                                        <TouchableOpacity onPress={this._onPressButton}>
-                                            <View style={styles.buttonList}>
-                                                <Image
-                                                    style={styles.image}
-                                                    //resizeMode="cover"
-                                                    source={{ uri: u.avatar }}
-                                                />
-                                                <Text style={styles.name}>{u.name}
-                                                </Text><Image
-                                                style={styles.image}
-                                                //resizeMode="cover"
-                                                source={{ uri: u.avatar }}
-                                                />
-                                            </View>
-                                        </TouchableOpacity>
-                                    </View>
-                                );
-                            })
-                        }
-                    </Card>
-
-                    <Card title="CARD WITH DIVIDER">
-                        {
-                            users.map((u, i) => {
-                                return (
-                                    <View key={i} style={styles.user}>
-                                        <TouchableOpacity onPress={this._onPressButton}>
-                                            <View style={styles.button}>
-                                                <Text style={styles.buttonText}>TouchableOpacity</Text>
-                                            </View>
-                                        </TouchableOpacity>
-                                    </View>
-
-                                );
-                            })
-                        }
-                    </Card>
-
-                    <TouchableHighlight onPress={this._onPressButton} underlayColor="white">
-                        <View style={styles.button}>
-                            <Text style={styles.buttonText}>TouchableHighlight</Text>
-                        </View>
-                    </TouchableHighlight>
-
-                    <TouchableOpacity onPress={this._onPressButton}>
-                        <View style={styles.button}>
-                            <Text style={styles.buttonText}>TouchableOpacity</Text>
-                        </View>
-                    </TouchableOpacity>
-
-                    <TouchableNativeFeedback
-                        onPress={this._onPressButton}
-                        background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
-                        <View style={styles.button}>
-                            <Text style={styles.buttonText}>TouchableNativeFeedback</Text>
-                        </View>
-                    </TouchableNativeFeedback>
-
-                    <TouchableWithoutFeedback
-                        onPress={this._onPressButton}
-                    >
-                        <View style={styles.button}>
-                            <Text style={styles.buttonText}>TouchableWithoutFeedback</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-
-                    <TouchableHighlight onPress={this._onPressButton} onLongPress={this._onLongPressButton}
-                                        underlayColor="white">
-                        <View style={styles.button}>
-                            <Text style={styles.buttonText}>Touchable with Long Press</Text>
-                        </View>
-                    </TouchableHighlight>
-
-                    <View style={{
-                        flex: 1,
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginBottom: 50,
-                        marginLeft: 10,
-                        marginRight: 10
-                    }}>
-                        <Text style={styles.FonteNova}>'Finalmente Barry'</Text>
-                        <Text style={styles.FonteNova}>Corre Barry, Corre!</Text>
-                        <Text style={styles.FonteNova}>Vamos Barry, Corre!</Text>
-                        <Text style={styles.FonteNova}>Now!</Text>
-                        <Text style={styles.FonteNova}>Now! Vamos Barry, Corre! Corre Barry, Corre! 'Finalmente Barry' !!!!!</Text>
-                        <Text style={styles.FonteNova}>Yes Mans</Text>
-                        <Text style={styles.FonteNova}>We did't</Text>
-                        <Text style={styles.FonteNova}>We did't</Text>
-                        <Text style={styles.FonteNova}>We did ITTTTTTTTTTTT</Text>
-                    </View>
-                </View>
-            </ScrollView>
-
-        );
-    }
-}
-const styles = StyleSheet.create({
-
-    name:{
-        paddingTop: 10,
-        paddingLeft: 10,
-        fontSize: 25,
-        fontWeight: 'bold',
-        fontFamily: 'sans-serif'
-    },
-    image:{
-        width: 50,
-        height: 50,
-        backgroundColor: '#2196F3',
-    },
-    container: {
-        paddingTop: 60,
-        alignItems: 'center'
-    },
-    button: {
-        marginBottom: 30,
-        width: 260,
-        alignItems: 'center',
-        backgroundColor: '#2196F3'
-    },
-    buttonList: {
-        marginBottom: 30,
-        width: 260,
-        height: 50,
-        borderWidth: 1,
-        borderColor: '#000000',
-        borderRadius: 4,
-        flexDirection: 'row',
-        flex: 1,
-    },
-    buttonText: {
-        padding: 20,
-        color: 'white'
-    },
-    FonteNova: {
-        textAlign: 'center',
-        fontFamily: 'sans-serif'
-    }
-})
-
-const users = [
-    {
-        name: 'Univem',
-        avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
-    },
-    {
-        name: 'Unimar',
-        avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
-    },
-    {
-        name: 'Unesp',
-        avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
-    }
-    //...more users here
-]
-
-// skip this line if using Create React Native App
-AppRegistry.registerComponent('AwesomeProject', () => Touchables);
+export default MainScreenNavigator;
