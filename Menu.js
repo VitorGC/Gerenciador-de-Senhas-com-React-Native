@@ -63,19 +63,18 @@ import {Text, View} from 'react-native';
 
 import { TabNavigator } from "react-navigation";
 
-import LoginScreen from './tabs/LoginScreen';
 import EmpresasScreen from './tabs/EmpresasScreen';
 import TelaEmpresasScreen from './tabs/TelaEmpresasScreen';
 import ListViewScreen from './tabs/ListView';
-import QRCodeScreen from '.tabs/QRCode';
-import org.reactnative.camera.RNCameraPackage;
+import QRCodeScreen from './tabs/QRCode';
+import UserScreen from './tabs/UserScreen';
 
 
 var MainScreenNavigator = TabNavigator({
-    Tab1: {screen: LoginScreen},
-    Tab2: {screen: EmpresasScreen},
-    Tab3: {screen: TelaEmpresasScreen},
-    Tab4: {screen: ListViewScreen},
+    Tab1: {screen: EmpresasScreen},
+    Tab2: {screen: TelaEmpresasScreen},
+    Tab3: {screen: ListViewScreen},
+    Tab4: {screen: UserScreen},
     Tab5: {screen: QRCodeScreen},
 },{
     tabBarPosition: 'bottom',
@@ -119,7 +118,7 @@ var MainScreenNavigator = TabNavigator({
 });
 
 MainScreenNavigator.navigationOptions = {
-    title: "Tab Example"
+    title: "Voltar  "
 };
 
 export default MainScreenNavigator;

@@ -1,21 +1,19 @@
 import React from 'react';
-import { View, ListView, StyleSheet, Text, Button, Image } from 'react-native';
+import {
+    View,
+    ListView,
+    StyleSheet,
+    Text,
+    Button,
+    Image,
+    ScrollView,
+    ImageBackground,
+} from 'react-native';
 import demoData from './TabListView/Data';
 import Row from './TabListView/Row';
 import Header from './TabListView/Header';
 import Footer from './TabListView/Footer';
 import SectionHeader from './TabListView/SectionHeader';
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: 20,
-    },separator: {
-        flex: 1,
-        height: StyleSheet.hairlineWidth,
-        backgroundColor: '#8E8E8E',
-    },
-});
 
 export default class ListViewScreen extends React.Component {
     static navigationOptions = {
@@ -92,18 +90,67 @@ export default class ListViewScreen extends React.Component {
         return { dataBlob, sectionIds, rowIds };
     }
 
-            render() {
+    render() {
         return (
-            <ListView
-                style={styles.container}
-                dataSource={this.state.dataSource}
-                renderRow={(data) => <Row {...data} />}
-                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                renderHeader={() => <Header />}
-                renderFooter={() => <Footer />}
-                renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}
-            />
+            <View style= {styles.container}>
+                <ImageBackground source={require('../Img/BackGround.jpg')} style={styles.backgroundImage}>
+                    <View style={styles.content}>
+                        <ScrollView>
+                            <Text style={styles.logo}> - SIMPLEPASS - </Text>
+                            <Text style={styles.logo2}> - Empresas - </Text>
+                            <ListView
+                            style={styles.container}
+                            dataSource={this.state.dataSource}
+                            renderRow={(data) => <Row {...data} />}
+                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                            renderHeader={() => <Header />}
+                            renderFooter={() => <Footer />}
+                            renderSectionHeader={(sectionData) => <SectionHeader {...sectionData} />}
+                            />
+                        </ScrollView>
+                    </View>
+                </ImageBackground>
+            </View>
         );
     }
 }
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: 20,
+    },separator: {
+        flex: 1,
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: '#8E8E8E',
+    },
+    backgroundImage: {
+        flex: 1,
+        alignSelf: 'stretch',
+        width: null,
+        justifyContent: 'center',
+    },
+    content: {
+        alignItems: 'center',
+    },
+    logo: {
+        color: 'white',
+        fontSize: 40,
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        textShadowColor: '#252525',
+        textShadowOffset: {width: 2, height: 2},
+        textShadowRadius: 15,
+        marginBottom: 20,
+    },
+    logo2: {
+        color: 'white',
+        fontSize: 20,
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        textShadowColor: '#252525',
+        textShadowOffset: {width: 4, height: 4},
+        textShadowRadius: 20,
+        marginBottom: 5,
+    },
+});

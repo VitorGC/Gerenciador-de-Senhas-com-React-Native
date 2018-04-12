@@ -1,13 +1,28 @@
 
 import React, { Component } from 'react';
-import { Alert, AppRegistry, Platform, StyleSheet, Text, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback, View, ScrollView, Image, Button } from 'react-native';
+import {
+    Alert,
+    AppRegistry,
+    Platform,
+    StyleSheet,
+    Text,
+    TouchableHighlight,
+    TouchableOpacity,
+    TouchableNativeFeedback,
+    TouchableWithoutFeedback,
+    View,
+    ScrollView,
+    Image,
+    Button,
+    ImageBackground,
+} from 'react-native';
 
 export default class TelaEmpresasScreen extends React.Component {
     static navigationOptions = {
-        tabBarLabel: 'Empresas   ',
+        tabBarLabel: 'Registros   ',
         tabBarIcon: ({tintColor}) => (
             <Image
-                source={require('../Img/Empresas.png')}
+                source={require('../Img/Registro.png')}
                 style={{width: 22, height: 22, tintColor: 'white'}}>
             </Image>
         )
@@ -18,90 +33,119 @@ export default class TelaEmpresasScreen extends React.Component {
     }
 
     _onLongPressButton() {
-        Alert.alert('Detalhes da Aplicação!')
+        Alert.alert('Detalhes da Empresa!')
     }
 
 
     render() {
         return (
-            <ScrollView>
-                <View style={styles.container}>
+            <View style= {styles.container}>
+                <ImageBackground source={require('../Img/BackGround.jpg')} style={styles.backgroundImage}>
+                    <View style={styles.content}>
+                        <ScrollView>
+                            <Text style={styles.logo}> - SIMPLEPASS - </Text>
+                            <Text style={styles.logo2}> - Registros - </Text>
+                            <TouchableHighlight onPress={this._onPressButton} onLongPress={this._onLongPressButton}
+                                                underlayColor="white">
+                                <View style={styles.button}>
+                                    <Text style={styles.buttonText}>Univem   </Text>
+                                </View>
+                            </TouchableHighlight>
 
-                    <TouchableHighlight onPress={this._onPressButton} underlayColor="white">
-                        <View style={styles.button}>
-                            <Text style={styles.buttonText}>TouchableHighlight</Text>
-                        </View>
-                    </TouchableHighlight>
+                            <TouchableHighlight onPress={this._onPressButton} onLongPress={this._onLongPressButton}
+                                                underlayColor="white">
+                                <View style={styles.button}>
+                                    <Text style={styles.buttonText}>Unimar   </Text>
+                                    <Image source={require('../Img/Seta.png')} style={styles.setaImage}/>
+                                </View>
+                            </TouchableHighlight>
 
-                    <TouchableOpacity onPress={this._onPressButton}>
-                        <View style={styles.button}>
-                            <Text style={styles.buttonText}>TouchableOpacity</Text>
-                        </View>
-                    </TouchableOpacity>
+                            <TouchableHighlight onPress={this._onPressButton} onLongPress={this._onLongPressButton}
+                                                underlayColor="white">
+                                <View style={styles.button}>
+                                    <Text style={styles.buttonText}>Burguer's   </Text>
+                                </View>
+                            </TouchableHighlight>
 
-                    <TouchableNativeFeedback
-                        onPress={this._onPressButton}
-                        background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
-                        <View style={styles.button}>
-                            <Text style={styles.buttonText}>TouchableNativeFeedback</Text>
-                        </View>
-                    </TouchableNativeFeedback>
+                            <TouchableHighlight onPress={this._onPressButton} onLongPress={this._onLongPressButton}
+                                                underlayColor="white">
+                                <View style={styles.button}>
+                                    <Text style={styles.buttonText}>Mercado São José   </Text>
+                                </View>
+                            </TouchableHighlight>
 
-                    <TouchableWithoutFeedback
-                        onPress={this._onPressButton}
-                    >
-                        <View style={styles.button}>
-                            <Text style={styles.buttonText}>TouchableWithoutFeedback</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-
-                    <TouchableHighlight onPress={this._onPressButton} onLongPress={this._onLongPressButton}
-                                        underlayColor="white">
-                        <View style={styles.button}>
-                            <Text style={styles.buttonText}>Touchable with Long Press</Text>
-                        </View>
-                    </TouchableHighlight>
-
-                    <View style={{
-                        flex: 1,
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginBottom: 50,
-                        marginLeft: 10,
-                        marginRight: 10
-                    }}>
-                        <Text style={styles.FonteNova}>'Finalmente Barry'</Text>
-                        <Text style={styles.FonteNova}>Corre Barry, Corre!</Text>
-                        <Text style={styles.FonteNova}>Vamos Barry, Corre!</Text>
-                        <Text style={styles.FonteNova}>Now!</Text>
-                        <Text style={styles.FonteNova}>Now! Vamos Barry, Corre! Corre Barry, Corre! 'Finalmente Barry' !!!!!</Text>
+                            <TouchableHighlight onPress={this._onPressButton} onLongPress={this._onLongPressButton}
+                                                underlayColor="white">
+                                <View style={styles.button}>
+                                    <Text style={styles.buttonText}>Casa de Carnes Alvorada   </Text>
+                                </View>
+                            </TouchableHighlight>
+                        </ScrollView>
                     </View>
-                </View>
-            </ScrollView>
-
+                </ImageBackground>
+            </View>
         );
     }
 }
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 60,
-        alignItems: 'center'
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    backgroundImage: {
+        flex: 1,
+        alignSelf: 'stretch',
+        width: null,
+        justifyContent: 'center',
+    },
+    content: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 20,
+    },
+    logo: {
+        color: 'white',
+        fontSize: 40,
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        textShadowColor: '#252525',
+        textShadowOffset: {width: 2, height: 2},
+        textShadowRadius: 15,
+        marginBottom: 20,
+    },
+    logo2: {
+        color: 'white',
+        fontSize: 20,
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        textShadowColor: '#252525',
+        textShadowOffset: {width: 4, height: 4},
+        textShadowRadius: 20,
+        marginBottom: 5,
     },
     button: {
         marginBottom: 30,
-        width: 260,
+        //width: 260,
+        height: 50,
         alignItems: 'center',
-        backgroundColor: '#2196F3'
+        backgroundColor: '#2196F3',
+        justifyContent: 'center',
     },
     buttonText: {
         padding: 20,
-        color: 'white'
+        color: 'white',
     },
     FonteNova: {
         textAlign: 'center',
         fontFamily: 'sans-serif'
-    }
+    },
+    setaImage: {
+        width: 22,
+        height: 22,
+        tintColor: 'white',
+        marginLeft:30,
+    },
 })
 
 // skip this line if using Create React Native App
