@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import * as firebase from 'firebase';
 import {
     Text,
     View,
@@ -10,7 +10,7 @@ import {
     TextInput,
     TouchableOpacity,
     AsyncStorage,
-
+    Alert
 } from 'react-native';
 
 import {
@@ -29,6 +29,42 @@ export default class LoginScreen extends React.Component{
             </Image>
         ),
     }
+    constructor (props) {
+        super(props)
+
+        this.changeEmail = this.changeEmail.bind(this)
+        this.changePassword = this.changePassword.bind(this)
+
+        this.state = {
+            email: '',
+            senha: ''
+        }
+    }
+
+    changeEmail(text) {
+        this.setState({
+            email : text
+        })
+    }
+
+    changePassword(text) {
+        this.setState({
+            senha : text
+        })
+    }
+
+    login() {
+        let {email, senha} = this.state
+        firebase.auth().signInWithEmailAndPassword(email, senha).then(
+            (user) => {
+                this.props.navigation.navigate('Menu')
+            },
+            (Error) => {
+              Alert.alert(Error.message)
+            }
+          )
+
+    }
     render(){
         return (
 
@@ -39,15 +75,15 @@ export default class LoginScreen extends React.Component{
 
                         <View style={styles.inputContainer}>
                             <TextInput underLineColorAndroid='transparent' style={styles.input}
-                                placeholder='Email'>
+                                placeholder='Email' onChangeText={ this.changeEmail }>
                             </TextInput>
 
                             <TextInput SecureTextEntry={true} underLineColorAndroid='transparent' style={styles.input}
-                                placeholder='Password'>
+                                placeholder='Password' secureTextEntry={true} onChangeText={ this.changePassword }>
                             </TextInput>
                         </View>
 
-                        <TouchableOpacity onPress={ () => this.props.navigation.navigate('Menu')} style={styles.buttonContainer}>
+                        <TouchableOpacity onPress= { ()=> this.login()} style={styles.buttonContainer}>
                             <Text style={styles.buttonText}>Entrar</Text>
                         </TouchableOpacity>
 

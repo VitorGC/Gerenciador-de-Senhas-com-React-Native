@@ -12,7 +12,9 @@ import {
     TextInput,
     TouchableOpacity,
     AsyncStorage,
+    Alert
 } from 'react-native';
+import * as firebase from 'firebase';
 
 import RadioButton from 'radio-button-react-native';
 import DatePicker from 'react-native-datepicker';
@@ -22,11 +24,84 @@ export default class CadastroScreen extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
-            value: 0
-        },{
-            date: "2000-01-01"
+            // value: 0,
+            // date: "2000-01-01",
+            nome: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            // sexo: null,
+            celular: null
+        }
+        this.changeEmail = this.changeEmail.bind(this),
+        this.changePassword = this.changePassword.bind(this),
+        this.changeNome = this.changeNome.bind(this),
+        this.changeCelular = this.changeCelular.bind(this),
+        this.changeConfirmPassword = this.changeConfirmPassword.bind(this)
+    }
+
+    changeEmail (text) {
+        this.setState({
+            email : text
+        })
+    }
+    changePassword (text) {
+        this.setState({
+            password : text
+        })
+    }
+    changeNome (text) {
+        this.setState({
+            nome : text
+        })
+    }
+    changeConfirmPassword (text) {
+        this.setState({
+            confirmPassword : text
+        })
+    }
+    // changeNascimento (text) {
+    //     this.setState({
+    //         nascimento : text
+    //     })
+    // }
+    // changeSexo (text) {
+    //     this.setState({
+    //         sexo : text
+    //     })
+    // }
+    changeCelular (text) {
+        this.setState({
+            celular : text
+        })
+    }
+    cadastro () {
+        var database = firebase.database();     
+        let {email, password, confirmPassword, nome, nascimento, sexo, celular } = this.state
+        if (password === confirmPassword) {
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                this.props.navigation.navigate('LoginScreen')
+                firebase.auth().onAuthStateChanged(function(user) {
+                    let uid = user.uid;
+                    firebase.database().ref('users/' + uid).set({
+                        nome: nome,
+                        email: email,
+                        celular: celular
+                    });
+                }); 
+            })
+            .catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                Alert.alert(errorMessage)
+            });
+        } else {
+            // Alert.alert('Erro', 'Senhas divergentes')
         }
 
+          
     }
 
     handleOnPress(value){
@@ -55,26 +130,26 @@ export default class CadastroScreen extends React.Component{
 
                             <View style={styles.inputContainer}>
                                 <TextInput underLineColorAndroid='transparent' style={styles.input}
-                                           placeholder='Nome'>
+                                           placeholder='Nome' onChangeText={ this.changeNome }>
                                 </TextInput>
 
                                 <TextInput underLineColorAndroid='transparent' style={styles.input}
-                                           placeholder='Email'>
+                                           placeholder='Email' onChangeText={ this.changeEmail }>
                                 </TextInput>
 
                                 <TextInput SecureTextEntry={true} underLineColorAndroid='transparent' style={styles.input}
-                                           placeholder='Password'>
+                                           placeholder='Password' onChangeText={ this.changePassword }>
                                 </TextInput>
 
                                 <TextInput SecureTextEntry={true} underLineColorAndroid='transparent' style={styles.input}
-                                           placeholder='Confirm Password'>
+                                           placeholder='Confirm Password' onChangeText={ this.changeConfirmPassword }>
                                 </TextInput>
 
                                 <TextInput underLineColorAndroid='transparent' style={styles.input}
-                                           placeholder='Cel. (XX) X - XXXX - XXXX'>
+                                           placeholder='Cel. (XX) X - XXXX - XXXX' onChangeText={ this.changeCelular }>
                                 </TextInput>
 
-                                <View style={styles.radiusB}>
+                                {/* <View style={styles.radiusB}>
                                     <Text>Sexo</Text>
                                     <RadioButton currentValue={this.state.value} value={0} onPress={this.handleOnPress.bind(this)}>
                                         <Text>Masculino  </Text>
@@ -83,9 +158,9 @@ export default class CadastroScreen extends React.Component{
                                     <RadioButton currentValue={this.state.value} value={1} onPress={this.handleOnPress.bind(this)}>
                                         <Text>Feminino  </Text>
                                     </RadioButton>
-                                </View>
+                                </View> */}
 
-                                <DatePicker
+                                {/* <DatePicker
                                     style={{width: 200}}
                                     date={this.state.date}
                                     mode="date"
@@ -108,9 +183,9 @@ export default class CadastroScreen extends React.Component{
                                         // ... You can check the source to find the other keys.
                                     }}
                                     onDateChange={(date) => {this.setState({date: date})}}
-                                />
+                                /> */}
 
-                                <TouchableOpacity onPress={ () => this.props.navigation.navigate('LoginScreen')} style={styles.buttonContainer}>
+                                <TouchableOpacity onPress= { ()=> this.cadastro()} style={styles.buttonContainer}>
                                     <Text style={styles.buttonText}>Confirmar</Text>
                                 </TouchableOpacity>
 
